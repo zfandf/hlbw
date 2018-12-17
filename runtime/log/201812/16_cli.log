@@ -1,0 +1,3 @@
+[ 2018-12-16T21:21:53+08:00 ][ sql ] [ DB ] CONNECT:[ UseTime:0.002563s ] mysql:host=127.0.0.1;dbname=hlbw;charset=utf8
+[ 2018-12-16T21:21:53+08:00 ][ sql ] [ SQL ] SHOW TABLE STATUS LIKE 'experts' [ RunTime:0.004111s ]
+[ 2018-12-16T21:21:53+08:00 ][ sql ] [ SQL ] SHOW TABLE STATUS LIKE 'hlbw_experts' [ RunTime:0.000933s ]

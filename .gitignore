@@ -1,0 +1,22 @@
+
+# IDE
+.idea
+.buildpath
+.project
+.settings
+.DS_Store
+.nbproject
+*.iml
+.metadata
+
+# Vim swap
+*.swp
+.swp
+.swo
+*.swo
+.swn
+*.swn
+
+# Dependency Ignore
+/public/assets/libs/
+/vendor/
