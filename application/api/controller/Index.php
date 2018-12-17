@@ -22,6 +22,9 @@ class Index extends Api
         $this->success('请求成功');
     }
 
+    /**
+     * banner
+     */
     public function banner() {
         $list = \app\common\model\Banner::getArray();
         $this->success('', $list);
