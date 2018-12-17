@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:70:"C:\code\hlbw\public/../application/admin\view\experts\experts\add.html";i:1545023718;s:55:"C:\code\hlbw\application\admin\view\layout\default.html";i:1544409141;s:52:"C:\code\hlbw\application\admin\view\common\meta.html";i:1544409141;s:54:"C:\code\hlbw\application\admin\view\common\script.html";i:1544409141;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:70:"C:\code\hlbw\public/../application/admin\view\experts\experts\add.html";i:1545034571;s:55:"C:\code\hlbw\application\admin\view\layout\default.html";i:1544409141;s:52:"C:\code\hlbw\application\admin\view\common\meta.html";i:1544409141;s:54:"C:\code\hlbw\application\admin\view\common\script.html";i:1544409141;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -65,6 +65,12 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="c-keywords" class="control-label col-xs-12 col-sm-2"><?php echo __('Keywords'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-keywords" data-rule="required" class="form-control" name="row[eywords]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
         <label for="c-tags" class="control-label col-xs-12 col-sm-2"><?php echo __('Tag'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
             <input id="c-tags" data-rule="required" class="form-control" name="row[tags]" type="text" value="">
@@ -106,6 +112,12 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="c-content" class="control-label col-xs-12 col-sm-2"><?php echo __('Abstract'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-content" class="form-control editor" name="row[content]"></textarea>
+        </div>
+    </div>
     <div class="form-group">
         <label for="c-gains" class="control-label col-xs-12 col-sm-2"><?php echo __('Gains'); ?>:</label>
         <div class="col-xs-12 col-sm-8">

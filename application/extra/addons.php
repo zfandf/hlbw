@@ -8,6 +8,10 @@ return array (
     array (
       0 => 'epay',
     ),
+    'config_init' => 
+    array (
+      0 => 'nkeditor',
+    ),
   ),
   'route' => 
   array (

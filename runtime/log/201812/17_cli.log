@@ -1,0 +1,26 @@
+[ 2018-12-17T14:39:00+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000141s ]
+[ info ] [ LOG ] INIT File
+[ 2018-12-17T14:39:00+08:00 ][ info ] [ CACHE ] INIT File
+[ 2018-12-17T14:39:00+08:00 ][ info ] [ BEHAVIOR ] Run \addons\epay\Epay @app_init [ RunTime:0.009399s ]
+[ 2018-12-17T14:39:00+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.014674s ]
+[ 2018-12-17T14:48:30+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000136s ]
+[ info ] [ LOG ] INIT File
+[ 2018-12-17T14:48:30+08:00 ][ info ] [ CACHE ] INIT File
+[ 2018-12-17T14:48:30+08:00 ][ info ] [ BEHAVIOR ] Run \addons\epay\Epay @app_init [ RunTime:0.008226s ]
+[ 2018-12-17T14:48:30+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.013932s ]
+[ 2018-12-17T14:53:59+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000130s ]
+[ info ] [ LOG ] INIT File
+[ 2018-12-17T14:53:59+08:00 ][ info ] [ CACHE ] INIT File
+[ 2018-12-17T14:53:59+08:00 ][ info ] [ BEHAVIOR ] Run \addons\epay\Epay @app_init [ RunTime:0.009021s ]
+[ 2018-12-17T14:53:59+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.017734s ]
+[ 2018-12-17T14:53:59+08:00 ][ error ] [0]Parse error: syntax error, unexpected 'if' (T_IF)[C:\code\hlbw\application\api\controller\Experts.php:49]
+[ 2018-12-17T14:54:30+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000139s ]
+[ info ] [ LOG ] INIT File
+[ 2018-12-17T14:54:30+08:00 ][ info ] [ CACHE ] INIT File
+[ 2018-12-17T14:54:30+08:00 ][ info ] [ BEHAVIOR ] Run \addons\epay\Epay @app_init [ RunTime:0.008434s ]
+[ 2018-12-17T14:54:30+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.014251s ]
+[ 2018-12-17T20:16:33+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.000226s ]
+[ info ] [ LOG ] INIT File
+[ 2018-12-17T20:16:33+08:00 ][ info ] [ CACHE ] INIT File
+[ 2018-12-17T20:16:33+08:00 ][ info ] [ BEHAVIOR ] Run \addons\epay\Epay @app_init [ RunTime:0.007208s ]
+[ 2018-12-17T20:16:33+08:00 ][ info ] [ BEHAVIOR ] Run Closure @app_init [ RunTime:0.015999s ]

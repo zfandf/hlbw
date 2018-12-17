@@ -30,6 +30,11 @@ return [
     'Warning'                                               => '温馨提示',
     'Default'                                               => '默认',
     'Article'                                               => '文章',
+    'Banner'                                                => '轮播图',
+    'AuthNews' => '鉴证快讯',
+    'Abstract' => '简介',
+    'Keywords' => '关键字',
+    'Thumbnail' => '缩略图',
     'Page'                                                  => '单页',
     'OK'                                                    => '确定',
     'Apply'                                                 => '应用',
@@ -177,5 +182,6 @@ return [
     'Tag' => '标签',
     'Logintime' => '登录时间',
     'Gains' => '战绩',
-    'Certs' => '资质证书'
+    'Certs' => '资质证书',
+    'Avatar'         => '头像',
 ];
