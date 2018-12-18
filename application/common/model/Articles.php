@@ -33,4 +33,18 @@ class Articles Extends Model
 
         return ['list' => $list, 'total' => $total];
     }
+
+    public static function getArtFinanceData()
+    {
+        $where = ['type' => '金融资讯'];
+        $total = self::where('status', '=', 'normal')->where($where)->count();
+        $list = self::where('status', '=', 'normal')
+                    ->where($where)
+                    ->order('weigh', 'desc')
+                    ->order('updatetime', 'desc')
+                    ->field('id,title')
+                    ->select();
+
+        return ['list' => $list, 'total' => $total];
+    }
 }

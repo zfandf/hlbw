@@ -53,4 +53,17 @@ class Index extends Api
         $this->success('', $data);
     }
 
+    /**
+     * 艺术品金融服务
+     */
+    public function art_finance()
+    {
+        $data = \app\common\model\Articles::getArtFinanceData();
+        $list = $data['list'];
+        foreach ($list as $k => &$row) {
+            $row['url'] = get_host_name() . '/api/articles/index?id=' . $row->id;
+        }
+        $this->success('', $list);
+    }
+
 }
