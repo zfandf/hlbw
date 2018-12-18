@@ -22,7 +22,6 @@ class Articles Extends Model
     public static function getListData($offset = 0, $limit = 10)
     {
         $where = ['type' => '鉴证快讯'];
-        $total = self::where('status', '=', 'normal')->where($where)->count();
         $list = self::where('status', '=', 'normal')
                     ->where($where)
                     ->order('weigh', 'desc')
@@ -30,14 +29,12 @@ class Articles Extends Model
                     ->limit($offset, $limit)
                     ->field('id,title,thumbnail,description,createtime')
                     ->select();
-
-        return ['list' => $list, 'total' => $total];
+        return $list;
     }
 
     public static function getArtFinanceData()
     {
         $where = ['type' => '金融资讯'];
-        $total = self::where('status', '=', 'normal')->where($where)->count();
         $list = self::where('status', '=', 'normal')
                     ->where($where)
                     ->order('weigh', 'desc')
@@ -45,6 +42,6 @@ class Articles Extends Model
                     ->field('id,title')
                     ->select();
 
-        return ['list' => $list, 'total' => $total];
+        return $list;
     }
 }

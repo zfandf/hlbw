@@ -1,0 +1,127 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="c-weigh" class="control-label col-xs-12 col-sm-2">{:__('Weigh')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-weigh" class="form-control" name="row[weigh]" type="number" value="{$row.weigh}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content" class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[status]', ['normal'=>__('Normal'), 'hidden'=>__('Hidden')], $row['status'])}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-title" class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="{$row.title}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-tags" class="control-label col-xs-12 col-sm-2">标签:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-tags" data-rule="required" class="form-control" name="row[tags]" type="text" value="{$row.tags}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-age" class="control-label col-xs-12 col-sm-2">年代:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-age" data-rule="required" class="form-control" name="row[age]" type="text" value="{$row.age}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-category" class="control-label col-xs-12 col-sm-2">类别:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-category" data-rule="required" class="form-control" name="row[category]" type="text" value="{$row.category}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-size" class="control-label col-xs-12 col-sm-2">尺寸:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-size" data-rule="required" class="form-control" name="row[size]" type="text" value="{$row.size}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-description" class="control-label col-xs-12 col-sm-2">说明:</label>
+        <div class="col-xs-12 col-sm-8">
+            <textarea id="c-description" class="form-control" name="row[description]">{$row.description}</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-avatar" class="control-label col-xs-12 col-sm-2">{:__('Avatar')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-avatar" data-rule="" class="form-control" size="50" name="row[avatar]" type="text" value="{$row.avatar}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-avatar" class="btn btn-danger plupload" data-input-id="c-avatar" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-avatar" class="btn btn-primary fachoose" data-input-id="c-avatar" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-avatar"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-avatar"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-detail_images" class="control-label col-xs-12 col-sm-2">细节图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-detail_images" data-rule="" class="form-control" size="50" name="row[detail_images]" type="text" value="{$row.detail_images}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-detail_images" class="btn btn-danger plupload" data-input-id="c-detail_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-detail_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-detail_images" class="btn btn-primary fachoose" data-input-id="c-detail_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-detail_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-detail_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-spectrum_images" class="control-label col-xs-12 col-sm-2">光谱图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-spectrum_images" data-rule="" class="form-control" size="50" name="row[spectrum_images]" type="text" value="{$row.spectrum_images}">
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-spectrum_images" class="btn btn-danger plupload" data-input-id="c-spectrum_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-spectrum_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-spectrum_images" class="btn btn-primary fachoose" data-input-id="c-spectrum_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-spectrum_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-spectrum_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-expert_images" class="control-label col-xs-12 col-sm-2">专家合影图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-expert_images" data-rule="" class="form-control" size="50" name="row[expert_images]" type="text" value="{$row.expert_images}" >
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-expert_images" class="btn btn-danger plupload" data-input-id="c-expert_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-expert_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-expert_images" class="btn btn-primary fachoose" data-input-id="c-expert_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-expert_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-expert_images"></ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-cert_images" class="control-label col-xs-12 col-sm-2">检测报告图:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group">
+                <input id="c-cert_images" data-rule="" class="form-control" size="50" name="row[cert_images]" type="text" value="{$row.cert_images}" >
+                <div class="input-group-addon no-border no-padding">
+                    <span><button type="button" id="plupload-cert_images" class="btn btn-danger plupload" data-input-id="c-cert_images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-cert_images"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                    <span><button type="button" id="fachoose-cert_images" class="btn btn-primary fachoose" data-input-id="c-cert_images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                </div>
+                <span class="msg-box n-right" for="c-cert_images"></span>
+            </div>
+            <ul class="row list-inline plupload-preview" id="p-cert_images"></ul>
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
