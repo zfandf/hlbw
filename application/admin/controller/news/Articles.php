@@ -21,6 +21,7 @@ class Articles extends Backend
     {
         parent::_initialize();
         $this->model = model('Articles');
+        $this->view->assign("typeList", \app\admin\model\Articles::getTypeList());
     }
 
     /**
@@ -37,6 +38,7 @@ class Articles extends Backend
             {
                 return $this->selectpage();
             }
+
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
                     ->where($where)

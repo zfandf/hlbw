@@ -18,4 +18,8 @@ class Articles extends Model
     {
         return ['normal' => __('Normal'), 'hidden' => __('Hidden')];
     }
+
+    public static function getTypeList() {
+        return ['鉴证快讯' => '鉴证快讯', '金融资讯' => '金融资讯'];
+    }
 }

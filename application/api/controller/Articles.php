@@ -31,6 +31,12 @@ class Articles extends Api
      */
     public function index()
     {
+        echo '<html lang="zh-cn">
+                <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                </head>';
         echo $this->info->body;
+        echo '</html>';
     }
 }

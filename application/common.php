@@ -300,3 +300,7 @@ if (!function_exists('var_export_short')) {
     }
 
 }
+
+function get_host_name() {
+    return "http://".$_SERVER['HTTP_HOST'];
+}
