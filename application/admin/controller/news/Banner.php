@@ -21,7 +21,7 @@ class Banner extends Backend
     {
         parent::_initialize();
         $this->model = model('Banner');
-        $this->view->assign('signList', build_select('row[sign]', \app\admin\model\AppSign::column('sign,description'), ['class' => 'form-control selectpicker']));
+        $this->view->assign('signList', build_select('row[sign]', \app\admin\model\AppSign::column('sign,desc'), ['class' => 'form-control selectpicker']));
     }
 
     /**
@@ -63,7 +63,7 @@ class Banner extends Backend
         $row = $this->model->get($ids);
         if (!$row)
             $this->error(__('No Results were found'));
-        $this->view->assign('signList', build_select('row[sign]', \app\admin\model\AppSign::column('sign,description'), $row['sign'], ['class' => 'form-control selectpicker']));
+        $this->view->assign('signList', build_select('row[sign]', \app\admin\model\AppSign::column('sign,desc'), $row['sign'], ['class' => 'form-control selectpicker']));
         return parent::edit($ids);
     }
 

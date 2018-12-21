@@ -13,8 +13,7 @@ if (!function_exists('__')) {
      */
     function __($name, $vars = [], $lang = '')
     {
-        if (is_numeric($name) || !$name)
-            return $name;
+        if (is_numeric($name) || !$name) return $name;
         if (!is_array($vars)) {
             $vars = func_get_args();
             array_shift($vars);
@@ -36,8 +35,9 @@ if (!function_exists('format_bytes')) {
     function format_bytes($size, $delimiter = '')
     {
         $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
-        for ($i = 0; $size >= 1024 && $i < 6; $i++)
+        for ($i = 0; $size >= 1024 && $i < 6; $i++) {
             $size /= 1024;
+        }
         return round($size, 2) . $delimiter . $units[$i];
     }
 
@@ -84,7 +84,8 @@ if (!function_exists('cdnurl')) {
      */
     function cdnurl($url, $domain = false)
     {
-        $url = preg_match("/^https?:\/\/(.*)/i", $url) ? $url : \think\Config::get('upload.cdnurl') . $url;
+        $url = preg_match("/^https?:\/\/(.*)/i",
+            $url) ? $url : \think\Config::get('upload.cdnurl') . $url;
         if ($domain && !preg_match("/^(http:\/\/|https:\/\/)/i", $url)) {
             if (is_bool($domain)) {
                 $public = \think\Config::get('view_replace_str.__PUBLIC__');
@@ -142,11 +143,10 @@ if (!function_exists('rmdirs')) {
      */
     function rmdirs($dirname, $withself = true)
     {
-        if (!is_dir($dirname))
-            return false;
-        $files = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($dirname, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST
-        );
+        if (!is_dir($dirname)) return false;
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirname,
+            RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST);
 
         foreach ($files as $fileinfo) {
             $todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
@@ -172,10 +172,9 @@ if (!function_exists('copydirs')) {
         if (!is_dir($dest)) {
             mkdir($dest, 0755, true);
         }
-        foreach (
-            $iterator = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST) as $item
-        ) {
+        foreach ($iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source,
+            RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST) as $item) {
             if ($item->isDir()) {
                 $sontDir = $dest . DS . $iterator->getSubPathName();
                 if (!is_dir($sontDir)) {
@@ -193,7 +192,8 @@ if (!function_exists('mb_ucfirst')) {
 
     function mb_ucfirst($string)
     {
-        return mb_strtoupper(mb_substr($string, 0, 1)) . mb_strtolower(mb_substr($string, 1));
+        return mb_strtoupper(mb_substr($string, 0,
+                1)) . mb_strtolower(mb_substr($string, 1));
     }
 
 }
@@ -208,8 +208,7 @@ if (!function_exists('addtion')) {
      */
     function addtion($items, $fields)
     {
-        if (!$items || !$fields)
-            return $items;
+        if (!$items || !$fields) return $items;
         $fieldsArr = [];
         if (!is_array($fields)) {
             $arr = explode(',', $fields);
@@ -228,12 +227,18 @@ if (!function_exists('addtion')) {
         }
         foreach ($fieldsArr as $k => &$v) {
             $v = is_array($v) ? $v : ['field' => $v];
-            $v['display'] = isset($v['display']) ? $v['display'] : str_replace(['_ids', '_id'], ['_names', '_name'], $v['field']);
+            $v['display'] = isset($v['display']) ? $v['display'] : str_replace([
+                '_ids',
+                '_id'
+            ], ['_names', '_name'], $v['field']);
             $v['primary'] = isset($v['primary']) ? $v['primary'] : '';
             $v['column'] = isset($v['column']) ? $v['column'] : 'name';
             $v['model'] = isset($v['model']) ? $v['model'] : '';
             $v['table'] = isset($v['table']) ? $v['table'] : '';
-            $v['name'] = isset($v['name']) ? $v['name'] : str_replace(['_ids', '_id'], '', $v['field']);
+            $v['name'] = isset($v['name']) ? $v['name'] : str_replace([
+                '_ids',
+                '_id'
+            ], '', $v['field']);
         }
         unset($v);
         $ids = [];
@@ -241,7 +246,8 @@ if (!function_exists('addtion')) {
         foreach ($items as $k => $v) {
             foreach ($fields as $m => $n) {
                 if (isset($v[$n])) {
-                    $ids[$n] = array_merge(isset($ids[$n]) && is_array($ids[$n]) ? $ids[$n] : [], explode(',', $v[$n]));
+                    $ids[$n] = array_merge(isset($ids[$n]) && is_array($ids[$n]) ? $ids[$n] : [],
+                        explode(',', $v[$n]));
                 }
             }
         }
@@ -253,7 +259,8 @@ if (!function_exists('addtion')) {
                 $model = $v['name'] ? \think\Db::name($v['name']) : \think\Db::table($v['table']);
             }
             $primary = $v['primary'] ? $v['primary'] : $model->getPk();
-            $result[$v['field']] = $model->where($primary, 'in', $ids[$v['field']])->column("{$primary},{$v['column']}");
+            $result[$v['field']] = $model->where($primary, 'in',
+                $ids[$v['field']])->column("{$primary},{$v['column']}");
         }
 
         foreach ($items as $k => &$v) {
@@ -261,7 +268,8 @@ if (!function_exists('addtion')) {
                 if (isset($v[$n])) {
                     $curr = array_flip(explode(',', $v[$n]));
 
-                    $v[$fieldsArr[$n]['display']] = implode(',', array_intersect_key($result[$n], $curr));
+                    $v[$fieldsArr[$n]['display']] = implode(',',
+                        array_intersect_key($result[$n], $curr));
                 }
             }
         }
@@ -287,9 +295,8 @@ if (!function_exists('var_export_short')) {
                 $indexed = array_keys($var) === range(0, count($var) - 1);
                 $r = [];
                 foreach ($var as $key => $value) {
-                    $r[] = "$indent    "
-                        . ($indexed ? "" : var_export_short($key) . " => ")
-                        . var_export_short($value, "$indent    ");
+                    $r[] = "$indent    " . ($indexed ? "" : var_export_short($key) . " => ") . var_export_short($value,
+                            "$indent    ");
                 }
                 return "[\n" . implode(",\n", $r) . "\n" . $indent . "]";
             case "boolean":
@@ -301,6 +308,20 @@ if (!function_exists('var_export_short')) {
 
 }
 
-function get_host_name() {
-    return "http://".$_SERVER['HTTP_HOST'];
+if (!function_exists('get_host_name')) {
+    function get_host_name()
+    {
+        return "http://" . $_SERVER['HTTP_HOST'];
+    }
+}
+if (!function_exists('checkColEmpty')) {
+    function checkColEmpty($col)
+    {
+        foreach ($col as $k => $v) {
+            if (empty($v)) {
+                return [true, $k];
+            }
+        }
+        return [false, ''];
+    }
 }

@@ -1,0 +1,108 @@
+<style type="text/css">
+  .plupload-preview.nodel .btn-trash {
+    display: none;
+  }
+
+  .preview-img-box {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .preview-img-box a {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+  }
+
+  .preview-img-box p {
+    position: absolute;
+    bottom: -10px;
+    text-align: center;
+    width: 100%;
+    background: rgba(0, 0, 0, .1);
+    line-height: 30px;
+    height: 30px;
+  }
+</style>
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">类型:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$typeList[$row['type']]}">
+    </div>
+    <label class="control-label col-xs-12 col-sm-2">状态:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$statusList[$row['status']]}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">藏品类别:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.category}">
+    </div>
+    <label class="control-label col-xs-12 col-sm-2">藏品名称:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.name}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">价格:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.price}">
+    </div>
+    <label class="control-label col-xs-12 col-sm-2">专家:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.experts.name}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">预约人:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.offline_contacts}">
+    </div>
+    <label class="control-label col-xs-12 col-sm-2">预约人手机:</label>
+    <div class="col-xs-12 col-sm-4">
+      <input disabled class="form-control" type="text" value="{$row.offline_phone}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">预约时间:</label>
+    <div class="col-xs-12 col-sm-8">
+      <input id="c-offline_time" data-rule="" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[offline_time]" type="text" value="{$row.offline_time}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">预约地址:</label>
+    <div class="col-xs-12 col-sm-8">
+      <input disabled class="form-control" type="text" value="{$row.offline_address}">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-xs-12 col-sm-2">藏品图片:</label>
+    <div class="col-xs-12 col-sm-8">
+      {foreach name="$images" item="vo"}
+      <div class="preview-img-box">
+        <a href="{$vo['url']}" target="_blank" class="thumbnail" title="{$vo['title']}">
+          <img src="{$vo['url']}" class="img-responsive">
+        </a>
+        <p>{$vo['title']}</p>
+      </div>
+      {/foreach}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="c-remark" class="control-label col-xs-12 col-sm-2">备注:</label>
+    <div class="col-xs-12 col-sm-8">
+      <input id="c-remark" data-rule="required" class="form-control" name="row[remark]" type="text" value="{$row.remark}">
+    </div>
+  </div>
+
+  <div class="form-group layer-footer">
+    <label class="control-label col-xs-12 col-sm-2"></label>
+    <div class="col-xs-12 col-sm-8">
+      <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+    </div>
+  </div>
+</form>

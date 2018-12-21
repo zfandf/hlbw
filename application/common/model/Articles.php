@@ -27,7 +27,7 @@ class Articles Extends Model
                     ->order('weigh', 'desc')
                     ->order('updatetime', 'desc')
                     ->limit($offset, $limit)
-                    ->field('id,title,thumbnail,description,createtime')
+                    ->field('id,title,thumbnail,desc,createtime')
                     ->select();
         return $list;
     }

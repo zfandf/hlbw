@@ -324,7 +324,7 @@ class Api
         return true;
     }
 
-    function getLimits(Request $request) {
+    protected function getLimits(Request $request) {
         $page = $request->request('page');
         $count = $request->request('count');
         $page = empty($page) ? 1 : $page;

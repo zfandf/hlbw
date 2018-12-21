@@ -28,7 +28,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'id', title: __('Id')},
                         {field: 'type', title: '资讯类型'},
                         {field: 'title', title: __('Title')},
-                        {field: 'description', title: __('Abstract'), operate: 'LIKE'},
+                        {field: 'desc', title: __('Abstract'), operate: 'LIKE'},
                         {field: 'thumbnail', title: __('Thumbnail'), formatter: Table.api.formatter.image, operate: false},
                         {field: 'updatetime', title: __('Update time'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange', sortable: true},
                         {field: 'createtime', title: __('Create time'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange', sortable: true},
