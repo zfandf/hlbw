@@ -30,6 +30,7 @@ class Order extends Api
 
     /**
      * 下单
+     * @praam String $cert_id 证书id，通过 /api/cert/create_prep_no 获得
      * @param String $type 服务类型，根据 /api/order/get_types 中type一致
      * @param String $name 藏品名称
      * @param String $category 藏品类别
@@ -52,6 +53,7 @@ class Order extends Api
     public function order()
     {
         $col = [];
+        $col['cert_id'] = $this->request->request('cert_id');
         $col['type'] = $this->request->request('type');
         $col['name'] = $this->request->request('name');
         $col['category'] = $this->request->request('category');
@@ -60,6 +62,9 @@ class Order extends Api
         list($empty, $msg) = checkColEmpty($col);
         if ($empty) {
             $this->error('缺少参数: ' . $msg);
+        }
+        if (!\app\common\model\ObjectCert::get($col['cert_id'])) {
+            $this->error('预备案证书不存在');
         }
         if (!\app\common\model\Experts::get($col['expert_id'])) {
             $this->error('专家不存在');
@@ -120,11 +125,16 @@ class Order extends Api
     {
         $order_id = $this->request->request('order_id');
         $user = $this->auth->getUser();
-        $info = ObjectOrder::get(['id' => $order_id, 'user_id' => $user->id]);
+        $info = ObjectOrder::get_info($user->id, $order_id);
         if (!$info) {
             $this->error('订单不存在');
         }
-        $info->order_id = $info->id;
+        $info['order_id'] = $info['id'];
+        $info['prep_no'] = $info['cert']['prep_no'];
+        $info['expert'] = $info['experts']['name'];
+        unset($info['cert']);
+        unset($info['experts']);
+
         $this->success('', $info);
     }
 

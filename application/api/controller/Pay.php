@@ -12,7 +12,7 @@ use app\common\model\ObjectOrder;
 class Pay extends Api
 {
 
-    protected $noNeedLogin = [];
+    protected $noNeedLogin = ['*'];
     protected $noNeedRight = '*';
 
     public function _initialize()
@@ -35,8 +35,10 @@ class Pay extends Api
             $this->error('支付类型错误');
         }
         $order_id = $this->request->request('order_id');
-        $user = $this->auth->getUser();
-        $info = ObjectOrder::get(['id' => $order_id, 'user_id' => $user->id]);
+//        $user = $this->auth->getUser();
+//        $user_id = $user->id;
+        $user_id = 2;
+        $info = ObjectOrder::get(['id' => $order_id, 'user_id' => $user_id]);
         if (!$info) {
             $this->error('订单号不正确');
         }
@@ -45,8 +47,8 @@ class Pay extends Api
         $method = $this->request->request('platform');
 
         //这里配置两个回调地址,一个回调URL，一个支付完成返回URL，如果不配置则以payment.php中的为准
-        $notifyurl = $this->request->root(true) . '/addons/epay/index/nofityit/type/' . $type;
-        $returnurl = $this->request->root(true) . '/addons/epay/index/returnit/type/' . $type;
+        $notifyurl = $this->request->root(true) . '/api/pay/nofityit/type/' . $type;
+        $returnurl = $this->request->root(true) . '/api/pay/returnit/type/' . $type;
 
         $config = [
             'notify_url' => $notifyurl,
@@ -149,6 +151,7 @@ class Pay extends Api
 
         //下面这句必须要执行,且在此之前不能有任何输出
         echo $pay->success();
+        var_dump($data);
 
         return;
     }

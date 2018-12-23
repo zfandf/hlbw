@@ -18,10 +18,24 @@ class ObjectOrder Extends Model
     protected $createTime = 'createtime';
     protected $updateTime = '';
 
+    public function cert()
+    {
+        return $this->belongsTo('ObjectCert', 'cert_id', 'id', [], 'LEFT')
+                    ->setEagerlyType(0);
+    }
+
     public function experts()
     {
         return $this->belongsTo('Experts', 'expert_id', 'id', [], 'LEFT')
                     ->setEagerlyType(0);
+    }
+
+    public static function get_info($user_id, $order_id)
+    {
+        return self::with(['experts', 'cert'])->where([
+            'object_order.user_id' => $user_id,
+            'object_order.id' => $order_id
+        ])->find();
     }
 
     public static function get_list($where, $offset, $limit)
