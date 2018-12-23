@@ -18,7 +18,8 @@ class ObjectCert Extends Model
     protected $createTime = 'createtime';
     protected $updateTime = 'updatetime';
 
-    public static function build_no() {
+    public static function build_no()
+    {
         $no = date("Ymd", time()) . mt_rand(1111, 9999);
         if (self::get(['prep_no' => $no])) {
             return self::build_no();
@@ -26,8 +27,18 @@ class ObjectCert Extends Model
         return $no;
     }
 
-    public static function getInfo($id = NULL)
+    public static function get_list($where, $offset, $limit)
     {
-        return self::where('id', '=', $id)->find();
+        return self::with('order')
+                   ->where($where)
+                   ->order('createtime', 'desc')
+                   ->limit($offset, $limit)
+                   ->select();
+    }
+
+    public function order()
+    {
+        return $this->belongsTo('ObjectOrder', 'id', 'cert_id', [], 'LEFT')
+                    ->setEagerlyType(0);
     }
 }

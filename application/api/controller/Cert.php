@@ -34,28 +34,40 @@ class Cert extends Api
     }
 
     /**
-     * 专家列表
-     * @param int $group_id 分组ID
+     * 证书列表
+     * @param String $status 状态，wait:预备案, old:已过期, success:已备案
+     *
+     * @param Int page 页码，默认1
+     * @param Int count 每页展示条数，默认20
      */
     public function lists()
     {
-        $group_id = $this->request->request('group_id');
-        $list = \app\common\model\Experts::getArray($group_id);
+        $status = $this->request->request('status');
+        if (!$status) {
+            $this->error('缺少status参数');
+        }
+        $where = ['object_cert.status' => $status];
+        list($offset, $limit) = $this->getLimits($this->request);
+        $list = ObjectCert::get_list($where, $offset, $limit);
+        foreach ($list as &$row) {
+            $row['name'] = $row['order']['name'];
+            $row['valid'] = $row['validtime'] > 0 ? date('Y-m-d',
+                $row['validtime']) : '永久';
+        }
         $this->success('', $list);
     }
 
     /**
-     * 专家信息
-     * @param int $id ID
+     * 证书详情
+     * @param String $cert_id 证书id
      */
     public function info()
     {
-        $id = $this->request->request('id');
-        $info = \app\common\model\Experts::getInfo($id);
-        if ($info) {
-            $this->success('', $info);
-        } else {
-            $this->error('专家不存在');
+        $cert_id = $this->request->request('cert_id');
+        $info = ObjectCert::get($cert_id);
+        if (!$info) {
+            $this->error('证书不存在');
         }
+        $this->success('', $info);
     }
 }

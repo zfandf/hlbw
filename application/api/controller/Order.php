@@ -125,15 +125,13 @@ class Order extends Api
     {
         $order_id = $this->request->request('order_id');
         $user = $this->auth->getUser();
-        $info = ObjectOrder::get_info($user->id, $order_id);
+        $info = ObjectOrder::get_info($order_id);
         if (!$info) {
             $this->error('订单不存在');
         }
-        $info['order_id'] = $info['id'];
-        $info['prep_no'] = $info['cert']['prep_no'];
-        $info['expert'] = $info['experts']['name'];
-        unset($info['cert']);
-        unset($info['experts']);
+        if ($info['user_id'] != $user->id) {
+            $this->error('非本人订单');
+        }
 
         $this->success('', $info);
     }

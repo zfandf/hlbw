@@ -30,12 +30,17 @@ class ObjectOrder Extends Model
                     ->setEagerlyType(0);
     }
 
-    public static function get_info($user_id, $order_id)
+    public static function get_info($order_id)
     {
-        return self::with(['experts', 'cert'])->where([
-            'object_order.user_id' => $user_id,
+        $info = self::with(['experts', 'cert'])->where([
             'object_order.id' => $order_id
         ])->find();
+        $info['order_id'] = $info['id'];
+        $info['prep_no'] = $info['cert']['prep_no'];
+        $info['expert'] = $info['experts']['name'];
+        unset($info['cert']);
+        unset($info['experts']);
+        return $info;
     }
 
     public static function get_list($where, $offset, $limit)

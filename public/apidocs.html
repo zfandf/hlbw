@@ -146,8 +146,8 @@
                                         <a href="#证书接口" class="list-group-item" data-toggle="collapse" data-parent="#sidebar">证书接口  <i class="fa fa-caret-down"></i></a>
                     <div class="child collapse" id="证书接口">
                                                 <a href="javascript:;" data-id="1" class="list-group-item">获取预备案号</a>
-                                                <a href="javascript:;" data-id="2" class="list-group-item">专家列表</a>
-                                                <a href="javascript:;" data-id="3" class="list-group-item">专家信息</a>
+                                                <a href="javascript:;" data-id="2" class="list-group-item">证书列表</a>
+                                                <a href="javascript:;" data-id="3" class="list-group-item">证书详情</a>
                                             </div>
                                         <a href="#公共接口" class="list-group-item" data-toggle="collapse" data-parent="#sidebar">公共接口  <i class="fa fa-caret-down"></i></a>
                     <div class="child collapse" id="公共接口">
@@ -745,7 +745,7 @@
                     <div class="panel-heading" id="heading-2">
                         <h4 class="panel-title">
                             <span class="label label-success">GET</span>
-                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2"> 专家列表 <span class="text-muted">/api/cert/lists</span></a>
+                            <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2"> 证书列表 <span class="text-muted">/api/cert/lists</span></a>
                         </h4>
                     </div>
                     <div id="collapseOne2" class="panel-collapse collapse">
@@ -763,7 +763,7 @@
 
                                 <div class="tab-pane active" id="info2">
                                     <div class="well">
-                                        专家列表                                    </div>
+                                        证书列表                                    </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>Headers</strong></div>
                                         <div class="panel-body">
@@ -784,10 +784,22 @@
                                                 </thead>
                                                 <tbody>
                                                                                                         <tr>
-                                                        <td>group_id</td>
-                                                        <td>int</td>
+                                                        <td>status</td>
+                                                        <td>String</td>
                                                         <td>是</td>
-                                                        <td>分组ID</td>
+                                                        <td>状态，wait:预备案,</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>page</td>
+                                                        <td>Int</td>
+                                                        <td>是</td>
+                                                        <td>页码，默认1</td>
+                                                    </tr>
+                                                                                                        <tr>
+                                                        <td>count</td>
+                                                        <td>Int</td>
+                                                        <td>是</td>
+                                                        <td>每页展示条数，默认20</td>
                                                     </tr>
                                                                                                     </tbody>
                                             </table>
@@ -808,8 +820,16 @@
                                                 <div class="panel-body">
                                                     <form enctype="application/x-www-form-urlencoded" role="form" action="/api/cert/lists" method="get" name="form2" id="form2">
                                                                                                                 <div class="form-group">
-                                                            <label class="control-label" for="group_id">group_id</label>
-                                                            <input type="int" class="form-control input-sm" id="group_id" required placeholder="分组ID" name="group_id">
+                                                            <label class="control-label" for="status">status</label>
+                                                            <input type="String" class="form-control input-sm" id="status" required placeholder="状态，wait:预备案," name="status">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="page">page</label>
+                                                            <input type="Int" class="form-control input-sm" id="page" required placeholder="页码，默认1" name="page">
+                                                        </div>
+                                                                                                                <div class="form-group">
+                                                            <label class="control-label" for="count">count</label>
+                                                            <input type="Int" class="form-control input-sm" id="count" required placeholder="每页展示条数，默认20" name="count">
                                                         </div>
                                                                                                                 <div class="form-group">
                                                             <button type="submit" class="btn btn-success send" rel="2">提交</button>
@@ -855,7 +875,7 @@
                     <div class="panel-heading" id="heading-3">
                         <h4 class="panel-title">
                             <span class="label label-success">GET</span>
-                            <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3"> 专家信息 <span class="text-muted">/api/cert/info</span></a>
+                            <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3"> 证书详情 <span class="text-muted">/api/cert/info</span></a>
                         </h4>
                     </div>
                     <div id="collapseOne3" class="panel-collapse collapse">
@@ -873,7 +893,7 @@
 
                                 <div class="tab-pane active" id="info3">
                                     <div class="well">
-                                        专家信息                                    </div>
+                                        证书详情                                    </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><strong>Headers</strong></div>
                                         <div class="panel-body">
@@ -894,10 +914,10 @@
                                                 </thead>
                                                 <tbody>
                                                                                                         <tr>
-                                                        <td>id</td>
-                                                        <td>int</td>
+                                                        <td>cert_id</td>
+                                                        <td>String</td>
                                                         <td>是</td>
-                                                        <td>ID</td>
+                                                        <td>证书id</td>
                                                     </tr>
                                                                                                     </tbody>
                                             </table>
@@ -918,8 +938,8 @@
                                                 <div class="panel-body">
                                                     <form enctype="application/x-www-form-urlencoded" role="form" action="/api/cert/info" method="get" name="form3" id="form3">
                                                                                                                 <div class="form-group">
-                                                            <label class="control-label" for="id">id</label>
-                                                            <input type="int" class="form-control input-sm" id="id" required placeholder="ID" name="id">
+                                                            <label class="control-label" for="cert_id">cert_id</label>
+                                                            <input type="String" class="form-control input-sm" id="cert_id" required placeholder="证书id" name="cert_id">
                                                         </div>
                                                                                                                 <div class="form-group">
                                                             <button type="submit" class="btn btn-success send" rel="3">提交</button>
@@ -5849,7 +5869,7 @@
 
             <div class="row mt0 footer">
                 <div class="col-md-6" align="left">
-                    Generated on 2018-12-23 11:38:19                </div>
+                    Generated on 2018-12-23 12:08:04                </div>
                 <div class="col-md-6" align="right">
                     <a href="https://www.fastadmin.net" target="_blank">FastAdmin</a>
                 </div>
